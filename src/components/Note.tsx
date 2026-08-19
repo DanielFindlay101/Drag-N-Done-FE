@@ -1,11 +1,14 @@
 import { useDraggable } from "@dnd-kit/react";
 
-export type Colours = "green" | "blue" | "red" | "yellow";
+export type Colours = "green" | "blue" | "red" | "yellow" | "indigo";
 
 interface Props {
-  position: { x: number; y: number };
-  id: number;
+  position?: { x: number; y: number };
+  id: string;
   colour: Colours;
+  title: string;
+  description: string;
+  tag?: string;
 }
 
 const colourPicker: Record<Colours, string> = {
@@ -13,9 +16,17 @@ const colourPicker: Record<Colours, string> = {
   blue: "bg-blue-400",
   red: "bg-red-400",
   yellow: "bg-yellow-400",
+  indigo: "bg-indigo-400",
 };
 
-export default function Note({ position, id, colour }: Props) {
+export default function Note({
+  position,
+  id,
+  colour,
+  title,
+  description,
+  tag,
+}: Props) {
   const { ref, isDragging } = useDraggable({
     id,
   });
@@ -23,7 +34,7 @@ export default function Note({ position, id, colour }: Props) {
     <div
       ref={ref}
       style={{
-        transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
+        transform: `translate3d(${position?.x ?? 0}px, ${position?.y ?? 0}px, 0)`,
       }}
       className={`size-52 ${isDragging ? "z-10" : ""}`}
     >
@@ -33,17 +44,13 @@ export default function Note({ position, id, colour }: Props) {
       >
         <span className="absolute -top-2.5 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-black"></span>
         <div className="flex items-center justify-between">
-          <p className="text-xl font-black">Stuff around the house</p>
+          <p className="text-xl font-black">{title}</p>
         </div>
         <div className="max-w-min rounded-full border-2 border-black bg-cyan-400 px-4 py-1">
-          <p className="text-xs">Chore</p>
+          <p className="text-xs">{tag}</p>
         </div>
-        <p className="font-light">
-          Remember to clean my room and tidy up the kitchen.
-        </p>
+        <p className="font-light">{description}</p>
       </div>
     </div>
   );
 }
-
-//

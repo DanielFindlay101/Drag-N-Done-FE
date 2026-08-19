@@ -48,8 +48,9 @@ export default function CreateModal() {
         console.error("Cannot create a todo");
         return;
       }
-      //refetch tags here to include the new one and cleanup
+      //refetch tags and todos(notes) here to include the new one and cleanup
       await queryClient.invalidateQueries({ queryKey: ["tags"] });
+      await queryClient.invalidateQueries({ queryKey: ["get-notes"] });
       form.reset();
       setSelectedTag("");
       dialogRef.current?.close();
