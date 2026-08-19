@@ -20,7 +20,11 @@ createRoot(document.getElementById("root")!).render(
           {guestRoutes}
         </Routes>
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} position="left" />
+      <ReactQueryDevtools
+        initialIsOpen={false}
+        position="left"
+        buttonPosition="bottom-left"
+      />
     </QueryClientProvider>
   </StrictMode>,
 );

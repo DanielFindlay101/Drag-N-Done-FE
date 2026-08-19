@@ -1,4 +1,5 @@
-import { useDraggable } from "@dnd-kit/react";
+import { useDraggable, useDragOperation } from "@dnd-kit/react";
+import { Feedback } from "@dnd-kit/dom";
 
 export type Colours = "green" | "blue" | "red" | "yellow" | "indigo";
 
@@ -29,18 +30,22 @@ export default function Note({
 }: Props) {
   const { ref, isDragging } = useDraggable({
     id,
+    plugins: [Feedback.configure({ dropAnimation: null })],
   });
+  const { target } = useDragOperation();
+  const isAboutToDrop = isDragging && target?.id === "drop-zone";
+
   return (
     <div
       ref={ref}
       style={{
-        transform: `translate3d(${position?.x ?? 0}px, ${position?.y ?? 0}px, 0)`,
+        transform: `translate(-50%, -50%) translate3d(${position?.x ?? 0}px, ${position?.y ?? 0}px, 0)`,
       }}
-      className={`size-52 ${isDragging ? "z-10" : ""}`}
+      className={`absolute top-1/2 left-1/2 size-52 ${isDragging ? "z-10" : ""}`}
     >
       <div
-        className={`relative size-full -rotate-4 space-y-2 border-4 border-black ${colourPicker[colour]} p-4 shadow-[4px_4px_rgba(0,0,0,0.75)] hover:cursor-grab
-          active:rotate-0 active:scale-110 active:shadow-[10px_10px_rgba(0,0,0,0.5)]`}
+        className={`relative size-full -rotate-4 space-y-2 border-4 border-black ${colourPicker[colour]} p-4 shadow-[4px_4px_rgba(0,0,0,0.75)] transition-transform duration-150 hover:cursor-grab
+          active:rotate-0 active:scale-110 active:shadow-[10px_10px_rgba(0,0,0,0.5)] ${isAboutToDrop ? "scale-75!" : ""}`}
       >
         <span className="absolute -top-2.5 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-black"></span>
         <div className="flex items-center justify-between">

@@ -16,7 +16,7 @@ const colourOptions = [
   { value: "blue", className: "bg-blue-400" },
   { value: "red", className: "bg-red-400" },
   { value: "yellow", className: "bg-yellow-400" },
-  { value: "lilac", className: "bg-lilac-400" },
+  { value: "indigo", className: "bg-indigo-400" },
 ];
 
 export default function CreateModal() {
