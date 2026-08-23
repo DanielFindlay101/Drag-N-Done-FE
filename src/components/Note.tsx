@@ -44,17 +44,23 @@ export default function Note({
       className={`absolute top-1/2 left-1/2 size-52 ${isDragging ? "z-10" : ""}`}
     >
       <div
+        style={{ anchorName: "--note-anchor" } as React.CSSProperties}
         className={`relative size-full -rotate-4 space-y-2 border-4 border-black ${colourPicker[colour]} p-4 shadow-[4px_4px_rgba(0,0,0,0.75)] transition-transform duration-150 hover:cursor-grab
           active:rotate-0 active:scale-110 active:shadow-[10px_10px_rgba(0,0,0,0.5)] ${isAboutToDrop ? "scale-75!" : ""}`}
       >
         <span className="absolute -top-2.5 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-black"></span>
         <div className="flex items-center justify-between">
-          <p className="text-xl font-black">{title}</p>
+          <p className="text-xl font-black line-clamp-2">{title}</p>
+          {/* <button className="hover:cursor-pointer">
+            <EllipsisVertical strokeWidth={3} />
+          </button> */}
         </div>
         <div className="max-w-min rounded-full border-2 border-black bg-cyan-400 px-4 py-1">
           <p className="text-xs">{tag}</p>
         </div>
-        <p className="font-light">{description}</p>
+        <p className="font-light line-clamp-3 overflow-y-scroll">
+          {description}
+        </p>
       </div>
     </div>
   );

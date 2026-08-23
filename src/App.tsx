@@ -58,6 +58,7 @@ function App() {
     mutationFn: completeTodo,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["get-notes"] });
+      queryClient.invalidateQueries({ queryKey: ["get-completed-notes"] });
     },
   });
 

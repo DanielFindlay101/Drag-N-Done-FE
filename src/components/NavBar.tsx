@@ -22,7 +22,9 @@ export default function NavBar() {
   return (
     <>
       <nav className="bg-slate-500 flex justify-between items-center p-4 text-white border-b-2 border-black">
-        <h1 className="text-2xl text-black">Drag N Done</h1>
+        <div className="p-2 border-2 border-black shadow-[2px_2px_rgba(0,0,0,0.75)] bg-slate-300">
+          <h1 className="text-2xl text-black ">Drag N Done</h1>
+        </div>
         <div className="flex items-center gap-2">
           <button
             command="show-modal"

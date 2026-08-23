@@ -1,4 +1,5 @@
 import { useQueryClient, useQuery } from "@tanstack/react-query";
+import { CircleX } from "lucide-react";
 import { useState, useRef } from "react";
 
 const getTags = async (): Promise<string[]> => {
@@ -69,7 +70,7 @@ export default function CreateModal() {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-black">What is there to do?</h2>
         <button commandFor="create-dialog" command="close">
-          X
+          <CircleX strokeWidth={3} />
         </button>
       </div>
       <form
