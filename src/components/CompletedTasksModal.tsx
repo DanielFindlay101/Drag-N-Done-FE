@@ -1,24 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
 import { type Task } from "../utils/types";
 import CompletedTaskCard from "./CompletedTaskCard";
 import { CircleX } from "lucide-react";
 import Button from "./Button";
-
-const fetchCompletedTasks = async (): Promise<Task[]> => {
-  const response = await fetch("http://localhost:8787/todos?completed=true", {
-    credentials: "include",
-  });
-  if (!response.ok) {
-    throw new Error("Cannot fetch the Tasks");
-  }
-  return response.json();
-};
+import { useFetchCompletedTasks } from "../hooks/useFetchCompletedTasks";
 
 export default function CompletedTasksModal() {
-  const { data: completedTasks, isPending } = useQuery({
-    queryKey: ["get-completed-tasks"],
-    queryFn: fetchCompletedTasks,
-  });
+  const { data: completedTasks, isPending } = useFetchCompletedTasks();
 
   if (isPending) return <p>Loading...</p>;
 

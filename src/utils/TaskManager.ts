@@ -1,10 +1,22 @@
+import type { Task } from "./types";
+
 export default class TaskManager {
-  public fetchTasks = async () => {
+  public fetchTasks = async (): Promise<Task[]> => {
     const response = await fetch("http://localhost:8787/todos", {
       credentials: "include",
     });
     if (!response.ok) {
       throw new Error("Cannot fetch the tasks");
+    }
+    return response.json();
+  };
+
+  public fetchCompletedTasks = async (): Promise<Task[]> => {
+    const response = await fetch("http://localhost:8787/todos?completed=true", {
+      credentials: "include",
+    });
+    if (!response.ok) {
+      throw new Error("Cannot fetch the Tasks");
     }
     return response.json();
   };

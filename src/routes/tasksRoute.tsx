@@ -1,21 +1,11 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+
 import { useCompleteTask } from "../hooks/useCompleteTask";
+import { useFetchTasks } from "../hooks/useFetchTasks";
 import Note from "../components/Note";
-import { type Task } from "../utils/types";
 import { DragDropProvider } from "@dnd-kit/react";
 import CompletedDropZone from "../components/CompletedDropZone";
 import Canvas from "../components/Canvas";
-
-const fetchTasks = async (): Promise<Task[]> => {
-  const response = await fetch("http://localhost:8787/todos", {
-    credentials: "include",
-  });
-  if (!response.ok) {
-    throw new Error("Cannot fetch the tasks");
-  }
-  return response.json();
-};
 
 export const TasksRoute = () => {
   const [positions, setPositions] = useState<
@@ -25,12 +15,8 @@ export const TasksRoute = () => {
     return stored ? JSON.parse(stored) : {};
   });
 
-  const { data: tasks, isPending } = useQuery({
-    queryKey: ["get-tasks"],
-    queryFn: fetchTasks,
-  });
-
   const { mutate: markCompleted } = useCompleteTask();
+  const { data: tasks, isPending } = useFetchTasks();
 
   if (isPending) return <p>Loading...</p>;
 
