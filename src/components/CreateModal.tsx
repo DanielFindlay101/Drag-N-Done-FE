@@ -1,6 +1,7 @@
 import { useQueryClient, useQuery } from "@tanstack/react-query";
 import { CircleX } from "lucide-react";
 import { useState, useRef } from "react";
+import Button from "./Button";
 
 const getTags = async (): Promise<string[]> => {
   const response = await fetch("http://localhost:8787/tags", {
@@ -69,9 +70,9 @@ export default function CreateModal() {
     >
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-black">What is there to do?</h2>
-        <button commandFor="create-dialog" command="close">
-          <CircleX strokeWidth={3} />
-        </button>
+        <Button variant="icon" commandFor="create-dialog" command="close">
+          <CircleX strokeWidth={3} fill="#CAD5E2" />
+        </Button>
       </div>
       <form
         action=""
@@ -153,24 +154,17 @@ export default function CreateModal() {
 
         <div id="controls" className="flex flex-col mt-auto">
           <div className="flex justify-end gap-6">
-            <button
+            <Button
               type="button"
+              variant="neutral"
               commandFor="create-dialog"
               command="close"
-              className="bg-slate-300 p-2 border-2 border-black shadow-[2px_2px_rgba(0,0,0,0.75)] text-black hover:cursor-pointer
-                            transition-all duration-150 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none
-                            hover:bg-slate-200 active:bg-slate-500"
             >
               Cancel
-            </button>
-            <button
-              type="submit"
-              className="bg-green-400 p-2 border-2 border-black shadow-[2px_2px_rgba(0,0,0,0.75)] text-black hover:cursor-pointer
-                            transition-all duration-150 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none
-                            hover:bg-green-300 active:bg-green-500"
-            >
+            </Button>
+            <Button type="submit" variant="success">
               Create
-            </button>
+            </Button>
           </div>
         </div>
       </form>

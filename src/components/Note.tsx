@@ -1,7 +1,8 @@
 import { useDraggable, useDragOperation } from "@dnd-kit/react";
 import { Feedback } from "@dnd-kit/dom";
-
-export type Colours = "green" | "blue" | "red" | "yellow" | "indigo";
+import { EllipsisVertical } from "lucide-react";
+import Button from "./Button";
+import { type Colours } from "../utils/types";
 
 interface Props {
   position?: { x: number; y: number };
@@ -51,16 +52,14 @@ export default function Note({
         <span className="absolute -top-2.5 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-black"></span>
         <div className="flex items-center justify-between">
           <p className="text-xl font-black line-clamp-2">{title}</p>
-          {/* <button className="hover:cursor-pointer">
+          <Button variant="icon">
             <EllipsisVertical strokeWidth={3} />
-          </button> */}
+          </Button>
         </div>
         <div className="max-w-min rounded-full border-2 border-black bg-cyan-400 px-4 py-1">
           <p className="text-xs">{tag}</p>
         </div>
-        <p className="font-light line-clamp-3 overflow-y-scroll">
-          {description}
-        </p>
+        <p className="font-light line-clamp-3">{description}</p>
       </div>
     </div>
   );

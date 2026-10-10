@@ -6,6 +6,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import App from "./App.tsx";
 import { guestRoutes } from "./routes/guestRoutes.tsx";
 import { AuthRoutes } from "./routes/authRoutes.tsx";
+import { TasksRoute } from "./routes/tasksRoute.tsx";
+import AppLayout from "./components/AppLayout.tsx";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +17,10 @@ createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <Routes>
           <Route element={<AuthRoutes />}>
-            <Route path="/" element={<App />} />
+            <Route element={<AppLayout />}>
+              <Route path="/" element={<App />} />
+              <Route path="/tasks" element={<TasksRoute />} />
+            </Route>
           </Route>
           {guestRoutes}
         </Routes>

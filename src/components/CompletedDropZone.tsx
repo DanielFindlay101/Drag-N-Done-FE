@@ -1,5 +1,6 @@
 import { useDroppable } from "@dnd-kit/react";
-import CompletedNotesModal from "./CompletedNotesModal";
+import CompletedTasksModal from "./CompletedTasksModal";
+import Button from "./Button";
 
 interface Props {
   id: string;
@@ -17,15 +18,16 @@ export default function CompletedDropZone({ id }: Props) {
         }`}
       >
         <h3 className="text-xl">Drag here to complete!</h3>
-        <button
+        <Button
+          variant="neutral"
           command="show-modal"
           commandFor="completed-dialog"
-          className="pointer-events-auto bg-slate-300 p-2 border-2 border-black shadow-[2px_2px_rgba(0,0,0,0.75)] hover:cursor-pointer"
+          className="pointer-events-auto"
         >
           View all
-        </button>
+        </Button>
       </aside>
-      <CompletedNotesModal />
+      <CompletedTasksModal />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import CreateModal from "./CreateModal";
+import Button from "./Button";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -26,24 +27,12 @@ export default function NavBar() {
           <h1 className="text-2xl text-black ">Drag N Done</h1>
         </div>
         <div className="flex items-center gap-2">
-          <button
-            command="show-modal"
-            commandFor="create-dialog"
-            className="bg-cyan-400 p-2 border-2 border-black shadow-[2px_2px_rgba(0,0,0,0.75)] text-black hover:cursor-pointer
-                        transition-all duration-150 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none
-                        active:bg-cyan-500"
-          >
+          <Button command="show-modal" commandFor="create-dialog">
             Create
-          </button>
-          <button
-            onClick={handleLogout}
-            className="bg-slate-400 p-2 border-2 border-black shadow-[2px_2px_rgba(0,0,0,0.75)] text-black hover:cursor-pointer
-                        transition-all duration-150 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none
-                        active:bg-cyan-500"
-          >
-            {" "}
+          </Button>
+          <Button variant="secondary" onClick={handleLogout}>
             Log out
-          </button>
+          </Button>
         </div>
       </nav>
       <CreateModal />

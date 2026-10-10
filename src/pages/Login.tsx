@@ -1,5 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router";
+import Button from "../components/Button";
 
 export default function Login() {
   const queryClient = useQueryClient();
@@ -65,14 +66,9 @@ export default function Login() {
           </label>
 
           <div className="flex flex-col mt-auto">
-            <button
-              type="submit"
-              className="bg-green-400 mt-2 p-2 border-2 border-black shadow-[2px_2px_rgba(0,0,0,0.75)] text-black hover:cursor-pointer
-                        transition-all duration-150 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none
-                        hover:bg-green-300 active:bg-green-500"
-            >
+            <Button type="submit" variant="success" className="mt-2">
               Login
-            </button>
+            </Button>
           </div>
         </form>
         <p className="mx-auto text-slate-200 w-full mt-4">

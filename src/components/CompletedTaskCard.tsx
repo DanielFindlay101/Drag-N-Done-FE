@@ -1,8 +1,8 @@
-import type { Notes } from "../App";
-import type { Colours } from "./Note";
+import type { Task } from "../utils/types";
+import type { Colours } from "../utils/types";
 
 interface Props {
-  note: Notes;
+  task: Task;
 }
 
 const colourPicker: Record<Colours, string> = {
@@ -13,19 +13,19 @@ const colourPicker: Record<Colours, string> = {
   indigo: "bg-indigo-400",
 };
 
-export default function CompletedNoteCard({ note }: Props) {
+export default function CompletedTaskCard({ task }: Props) {
   return (
     <div
-      className={`flex ${colourPicker[note.colour]} flex flex-col gap-2 p-2 border-2 border-black shadow-[4px_4px_rgba(0,0,0,0.75)]
+      className={`flex ${colourPicker[task.colour]} flex flex-col gap-2 p-2 border-2 border-black shadow-[4px_4px_rgba(0,0,0,0.75)]
              backdrop:bg-black/40 backdrop:backdrop-blur-sm`}
     >
       <div className="flex justify-between gap-2">
-        <h4 className="text-xl font-bold">{note.title}</h4>
+        <h4 className="text-xl font-bold">{task.title}</h4>
         <div className="max-w-min rounded-full border-2 border-black bg-cyan-400 px-4 py-1">
-          <p className="text-xs">{note.tag}</p>
+          <p className="text-xs">{task.tag}</p>
         </div>
       </div>
-      {note.description}
+      {task.description}
 
       <button></button>
     </div>
